@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pixels</string>
+
+    <!-- Seed tracker -->
+    <string name="default_tracker_name">Mood</string>
+    <string-array name="default_mood_labels">
+        <item>Rough</item>
+        <item>Low</item>
+        <item>Okay</item>
+        <item>Good</item>
+        <item>Great</item>
+    </string-array>
+    <string-array name="default_generic_labels">
+        <item>Very low</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+        <item>Very high</item>
+    </string-array>
+
+    <!-- Calendar -->
+    <string-array name="month_initials" translatable="false">
+        <item>J</item><item>F</item><item>M</item><item>A</item><item>M</item><item>J</item>
+        <item>J</item><item>A</item><item>S</item><item>O</item><item>N</item><item>D</item>
+    </string-array>
+    <string-array name="month_names">
+        <item>January</item><item>February</item><item>March</item><item>April</item>
+        <item>May</item><item>June</item><item>July</item><item>August</item>
+        <item>September</item><item>October</item><item>November</item><item>December</item>
+    </string-array>
+
+    <!-- Symbols used in place of an icon library -->
+    <string name="symbol_overflow" translatable="false">⋮</string>
+    <string name="symbol_previous" translatable="false">‹</string>
+    <string name="symbol_next" translatable="false">›</string>
+    <string name="symbol_drag_handle" translatable="false">≡</string>
+
+    <!-- Common actions -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Save</string>
+
+    <!-- Year screen -->
+    <string name="year_tracker_button">%1$s ▾</string>
+    <string name="year_year_button">%1$d ▾</string>
+    <string name="year_picker_title">Show year</string>
+    <plurals name="year_completion">
+        <item quantity="one">%1$d of %2$d day</item>
+        <item quantity="other">%1$d of %2$d days</item>
+    </plurals>
+    <string name="menu_month_view">Month view</string>
+    <string name="menu_trackers">Trackers</string>
+    <string name="menu_settings">Settings</string>
+    <string name="today_prompt">How was today?</string>
+    <string name="today_logged">Today: %1$s</string>
+    <string name="today_change">Change</string>
+    <string name="insights_title">Observations</string>
+    <string name="empty_title">Nothing logged yet</string>
+    <string name="empty_body">Pick a colour above for today. Each day becomes one pixel.</string>
+    <string name="empty_backfill">Fill in earlier days</string>
+    <string name="no_trackers_title">No active trackers</string>
+    <string name="no_trackers_action">Manage trackers</string>
+    <string name="switcher_title">Trackers</string>
+    <string name="switcher_current">Showing</string>
+    <string name="switcher_manage">Manage trackers</string>
+
+    <!-- Log sheet -->
+    <string name="log_add_note">Add a note</string>
+    <string name="log_edit_note">Edit note</string>
+    <string name="log_note_label">Note</string>
+    <string name="log_note_counter">%1$d/%2$d</string>
+    <string name="log_clear">Clear entry</string>
+
+    <!-- Month screen -->
+    <string name="month_notes_title">Notes</string>
+    <string name="month_notes_empty">No notes this month.</string>
+
+    <!-- Trackers -->
+    <string name="trackers_title">Trackers</string>
+    <string name="trackers_add">Add</string>
+    <string name="trackers_hint">Drag ≡ to reorder. Swipe a tracker sideways to archive it.</string>
+    <string name="trackers_archive">Archive</string>
+    <string name="trackers_archived">Archived</string>
+    <string name="trackers_restore">Restore</string>
+    <string name="edit_title">Edit tracker</string>
+    <string name="edit_title_new">New tracker</string>
+    <string name="edit_name">Name</string>
+    <string name="edit_palette">Palette</string>
+    <string name="edit_labels">Labels</string>
+    <string name="edit_label_n">Level %1$d</string>
+    <string name="edit_delete">Delete tracker</string>
+    <string name="delete_title">Delete %1$s?</string>
+    <string name="delete_body">This permanently removes the tracker and every day logged in it. Type “%1$s” to confirm.</string>
+    <string name="delete_field_label">Tracker name</string>
+    <string name="palette_calm">Calm</string>
+    <string name="palette_warmth">Warmth</string>
+    <string name="palette_forest">Forest</string>
+    <string name="palette_mono">Mono</string>
+    <string name="palette_classic">Classic</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_reminder">Reminder</string>
+    <string name="settings_reminder_toggle">Daily reminder</string>
+    <string name="settings_reminder_body">One quiet notification, skipped on days you\'ve already logged.</string>
+    <string name="settings_reminder_time">Reminder time</string>
+    <string name="settings_permission_denied">Notifications are turned off for Pixels. You can allow them in system settings.</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">Follow system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_data">Your data</string>
+    <string name="settings_export">Export</string>
+    <string name="settings_export_body">Save every tracker and entry to a JSON file.</string>
+    <string name="settings_import">Import</string>
+    <string name="settings_import_body">Merge a Pixels JSON file into this device. Nothing is overwritten with older data.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_about_body">Pixels %1$s. No accounts, no network, no analytics. Everything stays on this device unless you export it.</string>
+    <string name="export_file_name" translatable="false">pixels-backup.json</string>
+    <string name="export_done">Export saved</string>
+    <string name="export_failed">Couldn\'t save the export</string>
+    <string name="import_title">Import backup?</string>
+    <string name="import_summary">Will add %1$d entries, update %2$d, skip %3$d.</string>
+    <string name="import_new_trackers">Also creates %1$d new tracker(s).</string>
+    <string name="import_confirm">Import</string>
+    <string name="import_done">Import complete</string>
+    <string name="import_failed">Import failed; nothing was changed</string>
+    <string name="import_invalid">That file isn\'t a Pixels backup</string>
+    <string name="import_nothing">That backup has nothing new</string>
+
+    <!-- Reminder -->
+    <string name="reminder_channel_name">Daily reminder</string>
+    <string name="reminder_channel_description">One optional reminder a day to log.</string>
+    <string name="reminder_body">How was today?</string>
+
+    <!-- Widget -->
+    <string name="widget_name">Pixels</string>
+    <string name="widget_description">Today and this month, with one-tap logging</string>
+    <string name="widget_no_tracker">No active tracker</string>
+    <string name="widget_log_level">Log today as %1$s</string>
+    <string name="widget_month_summary">This month: %1$d of %2$d days logged</string>
+
+    <!-- Insights: observational only. No advice, no goals, no judgement, no streaks. -->
+    <string name="insight_day_of_week">%1$ss average %2$s; %3$ss average %4$s.</string>
+    <string name="insight_month">%1$s had your highest average (%2$s) and %3$s your lowest (%4$s).</string>
+    <string name="insight_trend_up">Your last 30 days averaged %1$s, up from %2$s in the 30 days before.</string>
+    <string name="insight_trend_down">Your last 30 days averaged %1$s, down from %2$s in the 30 days before.</string>
+    <string name="insight_longest_run">Your longest stretch at %1$s or above was %2$d days, in %3$s.</string>
+    <string name="insight_completeness">You\'ve logged %1$d of %2$d days in %3$d.</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_level">%1$s, level %2$d of %3$d</string>
+    <string name="a11y_today_logged">Today logged as %1$s. Tap to change.</string>
+    <string name="a11y_switch_tracker">Tracker: %1$s. Switch tracker</string>
+    <string name="a11y_change_year">Year %1$d. Change year</string>
+    <string name="a11y_more_options">More options</string>
+    <string name="a11y_open_month">Open month</string>
+    <plurals name="a11y_month_summary">
+        <item quantity="one">%1$s: %2$d of %3$d day logged</item>
+        <item quantity="other">%1$s: %2$d of %3$d days logged</item>
+    </plurals>
+    <string name="a11y_month_common">, mostly %1$s</string>
+    <string name="a11y_previous_month">Previous month</string>
+    <string name="a11y_next_month">Next month</string>
+    <string name="a11y_has_note">has a note</string>
+    <string name="a11y_unlogged">not logged</string>
+    <string name="a11y_future">in the future</string>
+    <string name="a11y_log_day">Log this day</string>
+    <string name="a11y_drag_handle">Drag to reorder</string>
+    <string name="a11y_move_up">Move up</string>
+    <string name="a11y_move_down">Move down</string>
+</resources>
