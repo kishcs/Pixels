@@ -63,7 +63,6 @@
     <string name="empty_backfill">Fill in earlier days</string>
     <string name="no_trackers_title">No active trackers</string>
     <string name="no_trackers_action">Manage trackers</string>
-    <string name="switcher_title">Trackers</string>
     <string name="switcher_current">Showing</string>
     <string name="switcher_manage">Manage trackers</string>
 

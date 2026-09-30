@@ -31,7 +31,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -54,6 +53,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -88,15 +88,27 @@ fun YearScreen(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         val switchLabel = stringResource(R.string.a11y_switch_tracker, state.tracker?.name.orEmpty())
-                        TextButton(
-                            onClick = { switcherOpen = true },
-                            enabled = state.tracker != null,
-                            modifier = Modifier.semantics { contentDescription = switchLabel },
-                        ) {
-                            Text(
-                                text = stringResource(R.string.year_tracker_button, state.tracker?.name.orEmpty()),
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onSurface,
+                        // The switcher drops down from the tracker name, so changing tracker stays
+                        // within thumb reach of where the user tapped.
+                        Box {
+                            TextButton(
+                                onClick = { switcherOpen = true },
+                                enabled = state.tracker != null,
+                                modifier = Modifier.semantics { contentDescription = switchLabel },
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.year_tracker_button, state.tracker?.name.orEmpty()),
+                                    style = MaterialTheme.typography.titleLarge,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                )
+                            }
+                            TrackerSwitcherMenu(
+                                expanded = switcherOpen,
+                                trackers = state.trackers,
+                                selectedId = state.tracker?.id,
+                                onSelect = { vm.selectTracker(it); switcherOpen = false },
+                                onManage = { switcherOpen = false; onManageTrackers() },
+                                onDismiss = { switcherOpen = false },
                             )
                         }
                         val yearLabel = stringResource(R.string.a11y_change_year, state.year)
@@ -175,16 +187,6 @@ fun YearScreen(
             onSaveNote = { note -> vm.saveNote(day, note) },
             onClear = { vm.clear(day) },
             onDismiss = { sheetDay = null },
-        )
-    }
-
-    if (switcherOpen) {
-        TrackerSwitcherSheet(
-            trackers = state.trackers,
-            selectedId = state.tracker?.id,
-            onSelect = { vm.selectTracker(it); switcherOpen = false },
-            onManage = { switcherOpen = false; onManageTrackers() },
-            onDismiss = { switcherOpen = false },
         )
     }
 
@@ -405,47 +407,41 @@ private fun NoTrackers(onManage: () -> Unit, modifier: Modifier = Modifier) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TrackerSwitcherSheet(
+private fun TrackerSwitcherMenu(
+    expanded: Boolean,
     trackers: List<Tracker>,
     selectedId: Long?,
     onSelect: (Long) -> Unit,
     onManage: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
-        Column(Modifier.padding(bottom = 24.dp)) {
-            Text(
-                stringResource(R.string.switcher_title),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp).semantics { heading() },
-            )
-            trackers.forEach { t ->
-                val selected = t.id == selectedId
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onSelect(t.id) }
-                        .padding(horizontal = 20.dp, vertical = 14.dp),
-                ) {
-                    PaletteStrip(Palettes.byId(t.paletteId).colors)
-                    Spacer(Modifier.width(16.dp))
+    DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
+        trackers.forEach { t ->
+            val selected = t.id == selectedId
+            DropdownMenuItem(
+                text = {
                     Text(
                         t.name,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
-                        modifier = Modifier.weight(1f),
                     )
-                    if (selected) Text(stringResource(R.string.switcher_current), color = MaterialTheme.colorScheme.primary)
-                }
-            }
-            HorizontalDivider(Modifier.padding(vertical = 8.dp))
-            TextButton(onClick = onManage, modifier = Modifier.padding(horizontal = 12.dp)) {
-                Text(stringResource(R.string.switcher_manage))
-            }
+                },
+                leadingIcon = { PaletteStrip(Palettes.byId(t.paletteId).colors) },
+                trailingIcon = if (selected) {
+                    { Text(stringResource(R.string.switcher_current), color = MaterialTheme.colorScheme.primary) }
+                } else {
+                    null
+                },
+                onClick = { onSelect(t.id) },
+                modifier = Modifier.semantics { this.selected = selected },
+            )
         }
+        HorizontalDivider()
+        DropdownMenuItem(
+            text = { Text(stringResource(R.string.switcher_manage), color = MaterialTheme.colorScheme.primary) },
+            onClick = onManage,
+        )
     }
 }
 
